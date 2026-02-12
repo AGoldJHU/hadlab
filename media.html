@@ -353,4 +353,16 @@
             </div>
         </footer>
         <script>
-    (</script>
+    (function() {
+        var btn = document.querySelector('.mobile-menu-btn');
+        var nav = document.querySelector('.top-nav');
+        if (!btn || !nav) return;
+        btn.addEventListener('click', function() {
+            btn.classList.toggle('active');
+            nav.classList.toggle('mobile-open');
+            document.body.style.overflow = nav.classList.contains('mobile-open') ? 'hidden' : '';
+        });
+    })();
+    </script>
+</body>
+</html>

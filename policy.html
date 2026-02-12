@@ -147,4 +147,23 @@
                 <a href="https://bsky.app/profile/ghadfield.bsky.social" target="_blank">Bluesky</a>
             </div>
         </footer>
-        <script data-cf></script>
+        <script>
+    (function() {
+        var toggle = document.querySelector('.mobile-menu-toggle');
+        var overlay = document.querySelector('.mobile-nav-overlay');
+        var closeBtn = document.querySelector('.mobile-nav-close');
+        if (!toggle || !overlay) return;
+        toggle.addEventListener('click', function() {
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+    })();
+    </script>
+</body>
+</html>
