@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - Gillian K. Hadfield</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary-dark: #1a2e35;
+            --primary: #234e52;
+            --accent: #c77d3c;
+            --accent-hover: #9f580a;
+            --light-bg: #f8fafa;
+            --text: #2d3748;
+            --muted: #5f7273;
+            --border: #d6e4e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: white;
+        }
+
+        /* Top Navigation Bar - Matches Home Page */
+        .top-bar {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.15rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .top-nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .top-nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .top-nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: var(--primary);
+            padding: 4rem 3rem 3rem;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .page-hero p {
+            font-family: 'Source Sans Pro', -apple-system, sans-serif;
+            font-size: 1.15rem;
+            max-width: 800px;
+            line-height: 1.7;
+            opacity: 0.95;
+        }
+
+        /* Content Wrapper */
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 3rem;
+        }
+
+        /* Research Overview Box */
+        .research-overview {
+            background: var(--light-bg);
+            border-left: 5px solid var(--accent);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .research-overview h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .research-overview p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        /* Research Theme Section */
+        .research-theme {
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+            scroll-margin-top: 80px;
+        }
+
+        .research-theme:last-child {
+            border-bottom: none;
+        }
+
+        .theme-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .theme-number {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .theme-title-group {
+            flex: 1;
+        }
+
+        .theme-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .theme-subtitle {
+            font-family: 'Source Sans Pro', -apple-system, sans-serif;
+            font-size: 1rem;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .theme-description {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+
+        /* Key Questions */
+        .key-questions {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+
+        .key-questions h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .key-questions ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .key-questions li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.75rem;
+        }
+
+        .key-questions li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Featured Publications Grid */
+        .featured-pubs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pub-card {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 4px;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .pub-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-color: var(--accent);
+        }
+
+        .pub-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .pub-year {
+            display: inline-block;
+            color: var(--muted);
+            font-weight: 600;
+            margin-left: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .pub-card h4 {
+            margin: 1rem 0 0.5rem;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .pub-card h4 a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .pub-card h4 a:hover {
+            color: var(--accent);
+        }
+
+        .pub-meta {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .pub-excerpt {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--light-bg);
+            padding: 3rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-top: 4rem;
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.875rem 2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .cta-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--light-bg);
+            padding: 2rem 3rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .footer-contact-item {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.9rem;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .footer-contact-item span {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .footer-contact-item a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .footer-contact-item a:hover {
+            color: var(--accent);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Mobile Responsive */
+            
+        /* ── Mobile hamburger menu ── */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 200;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--primary, #234e52);
+            margin: 5px 0;
+            transition: transform 0.3s, opacity 0.3s;
+            border-radius: 2px;
+        }
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ── Mobile nav overlay ── */
+        .top-nav.mobile-open {
+            display: flex !important;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            z-index: 150;
+            padding: 5rem 2rem 2rem;
+            gap: 0;
+            list-style: none;
+            overflow-y: auto;
+        }
+        .top-nav.mobile-open li {
+            list-style: none;
+        }
+        .top-nav.mobile-open a {
+            display: block;
+            padding: 1rem 0;
+            font-size: 1.15rem;
+            border-bottom: 1px solid #e2e8f0;
+            color: var(--primary, #234e52);
+            text-decoration: none;
+        }
+        .top-nav.mobile-open a:hover,
+        .top-nav.mobile-open a.active {
+            color: var(--accent, #c77d3c);
+        }
+
+    
+        /* ── Mobile responsive (768px) ── */
+        @media (max-width: 768px) {
+            .top-bar {
+                padding: 0.75rem 1.5rem;
+            }
+            .top-nav {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-hero {
+                padding: 3rem 1.5rem 2rem;
+            }
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            .content-wrapper {
+                padding: 2rem 1.5rem;
+            }
+            .theme-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .theme-number {
+                font-size: 2rem;
+            }
+            .theme-title {
+                font-size: 1.5rem;
+            }
+            .featured-pubs {
+                grid-template-columns: 1fr;
+            }
+            .footer-contact {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="top-bar">
+        <a href="index.html" class="logo">Gillian K. Hadfield</a>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav>
+            <ul class="top-nav">
+             <li><a href="index.html">Home</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="policy.html">Policy</a></li>
+    <li><a href="talks.html">Talks</a></li>
+    <li><a href="media.html">Media</a></li>
+    <li><a href="bio.html">Bio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1>Research</h1>
+            <p>
+                Advancing AI alignment, multi-agent cooperation, and governance frameworks 
+                for frontier AI systems—bridging computer science, law, economics, and social theory.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="content-wrapper">
+        <!-- Research Overview -->
+        <section class="research-overview">
+            <h2>Research Overview</h2>
+            <p>
+                My research addresses fundamental questions about how to build AI systems that can operate safely, 
+                ethically, and beneficially within human normative frameworks. This work spans three interconnected areas: 
+                normative AI alignment, multi-agent cooperation, and governance mechanisms for advanced AI.
+            </p>
+            <p>
+                I draw on legal theory, economics, game theory, and computer science to develop both theoretical frameworks 
+                and practical solutions. Central to this work is the insight that effective AI governance and alignment 
+                require understanding how humans construct and maintain normative order—from informal social norms to 
+                formal legal systems.
+            </p>
+        </section>
+
+        <!-- Research Theme 1: Normative AI & Alignment -->
+        <article class="research-theme" id="normative-ai">
+            <div class="theme-header">
+                <div class="theme-number">01</div>
+                <div class="theme-title-group">
+                    <h2 class="theme-title">Normative AI & Alignment</h2>
+                    <div class="theme-subtitle">Building AI that understands and operates within human normative systems</div>
+                </div>
+            </div>
+
+            <p class="theme-description">
+                How do we build AI systems that can navigate the complex, context-dependent normative systems that 
+                govern human behavior? I explore how insights from economics and evolutionary theory can inform AI 
+                alignment—focusing on how AI can learn to recognize, reason about, and operate within human rules, norms, 
+                and values. This includes developing training environments and architectures that enable AI to become 
+                "normatively competent."
+            </p>
+
+            <div class="key-questions">
+                <h3>Key Questions</h3>
+                <ul>
+                    <li>How can AI systems learn to understand and operate in human normative frameworks?</li>
+                    <li>What role can legal reasoning and contract theory play in AI alignment?</li>
+                    <li>How do we train AI to recognize normative infrastructure in its environment?</li>
+                    <li>What makes rules "legible" to learning agents, and why do silly rules help?</li>
+                </ul>
+            </div>
+            <div class="featured-pubs">
+    
+
+                <div class="pub-card">
+                    <span class="pub-badge">arXiv</span>
+                    <span class="pub-year">2024</span>
+                    <h4><a href="https://arxiv.org/abs/2405.19328">Normative Modules: A generative agent architecture for learning norms</a></h4>
+                    <p class="pub-meta">With Atrisha Sarkar, Andrei Muresanu, and others</p>
+                    <p class="pub-excerpt">
+                        Proposes an architecture enabling AI agents to learn, represent, and reason about social 
+                        norms in ways that support cooperation in multi-agent environments.
+                    </p>
+                </div>
+                  <div class="pub-card">
+                    <span class="pub-badge">Science Advances</span>
+                    <span class="pub-year">2023</span>
+                    <h4><a href="https://www.science.org/doi/10.1126/sciadv.abq0701">Judging facts, judging norms: Training machine learning models to judge humans requires a modified approach to labeling data</a></h4>
+                    <p class="pub-meta">With Aparna Balagopalan, David Madras, David H. Yang, Dylan Hadfield-Menell, Julia Stoyanovich</p>
+                    <p class="pub-excerpt">
+                        Shows that standard ML data labeling practices are inadequate when models are used to make 
+                        normative judgments about humans, demonstrating the need to distinguish between factual and 
+                        normative labels with implications for fairness.
+                    </p>
+                </div>
+
+                <div class="pub-card">
+                    <span class="pub-badge">PNAS</span>
+                    <span class="pub-year">2022</span>
+                    <h4><a href="https://www.pnas.org/doi/10.1073/pnas.2106028118">Spurious normativity enhances learning of compliance and enforcement</a></h4>
+                    <p class="pub-meta">With Raphael Köster, Dylan Hadfield-Menell, Joel Z. Leibo, and others</p>
+                    <p class="pub-excerpt">
+                        Demonstrates experimentally that arbitrary ("silly") rules help artificial agents learn to 
+                        comply with and enforce norms more effectively—a key insight for building normatively 
+                        competent AI.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Research Theme 2: Multi-Agent Systems & Cooperation -->
+        <article class="research-theme" id="multi-agent">
+            <div class="theme-header">
+                <div class="theme-number">02</div>
+                <div class="theme-title-group">
+                    <h2 class="theme-title">Multi-Agent Systems & Cooperation</h2>
+                    <div class="theme-subtitle">How to make AI agents that interact, cooperate, and coordinate</div>
+                </div>
+            </div>
+
+            <p class="theme-description">
+                As AI systems become more numerous and autonomous, understanding how they interact becomes critical. I study cooperation, coordination, and conflict among AI agents. This work draws on law, game theory, and mechanism design to address how we move beyond current approaches that lead to misaligned agent behavior—preventing harmful collusion while enabling productive cooperation in multi-agent systems.
+            </p>
+
+            <div class="key-questions">
+                <h3>Key Questions</h3>
+                <ul>
+                    <li>How can we build AI systems capable of grounded argumentation?</li>
+                    <li>How can we build AI systems that cooperate effectively with each other, and humans?</li>
+                    <li>What risks emerge from multi-agent interactions, and how can we mitigate them?</li>
+                </ul>
+            </div>
+
+            <div class="featured-pubs">
+                <div class="pub-card">
+                    <span class="pub-badge">arXiv</span>
+                    <span class="pub-year">2025</span>
+                    <h4><a href="https://arxiv.org/abs/2502.14143">Multi-agent risks from advanced AI</a></h4>
+                    <p class="pub-meta">With Lewis Hammond, Alan Chan, and others</p>
+                    <p class="pub-excerpt">
+                        Analyzes risks that emerge specifically from interactions among multiple advanced AI 
+                        systems, including coordination failures, conflicts, and emergent behaviors.
+                    </p>
+                </div>
+
+                <div class="pub-card">
+                    <span class="pub-badge">arXiv</span>
+                    <span class="pub-year">2025</span>
+                    <h4><a href="https://arxiv.org/abs/2501.10114">Infrastructure for AI Agents</a></h4>
+                    <p class="pub-meta">With Alan Chan, Kevin Wei, and others</p>
+                    <p class="pub-excerpt">
+                        Proposes the technical and institutional infrastructure needed to support safe and 
+                        beneficial deployment of autonomous AI agents at scale.
+                    </p>
+                </div>
+
+                <div class="pub-card">
+                    <span class="pub-badge">arXiv</span>
+                    <span class="pub-year">2025</span>
+                    <h4><a href="https://arxiv.org/abs/2509.01063">An Economy of AI Agents</a></h4>
+                    <p class="pub-meta">With Andrew Koh</p>
+                    <p class="pub-excerpt">
+                        Examines how economic principles apply to a world where AI agents transact, cooperate, 
+                        and compete, and what governance structures such an economy requires.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Research Theme 3: AI Governance & Safety -->
+        <article class="research-theme" id="ai-governance">
+            <div class="theme-header">
+                <div class="theme-number">03</div>
+                <div class="theme-title-group">
+                    <h2 class="theme-title">AI Governance & Safety</h2>
+                    <div class="theme-subtitle">Regulatory frameworks for advanced AI systems</div>
+                </div>
+            </div>
+
+            <p class="theme-description">
+                How do we govern AI systems that evolve faster than traditional regulatory frameworks can adapt? I develop novel governance mechanisms—including regulatory markets—that can keep pace with rapid AI advancement while managing risks. This work addresses the current shortcomings with brittle approaches to regulation that cannot keep pace with frontier AI model development.
+            </p>
+
+            <div class="key-questions">
+                <h3>Key Questions</h3>
+                <ul>
+                    <li>How can regulatory markets enable adaptive governance of rapidly evolving AI?</li>
+                    <li>What international institutions are needed to coordinate AI safety efforts globally?</li>
+                    <li>What technical infrastructure is necessary to enable safe, democratic AI development?</li>
+                </ul>
+            </div>
+            <div class="featured-pubs">
+                <div class="pub-card">
+                    <span class="pub-badge">arXiv</span>
+                    <span class="pub-year">2026</span>
+                    <h4><a href="https://arxiv.org/abs/2601.04175">Legal Alignment for Safe and Ethical AI</a></h4>
+                    <p class="pub-meta">With Noam Kolt, Nicholas Caputo, Jonathan Zittrain, and others</p>
+                    <p class="pub-excerpt">
+                        Explores how legal rules, principles, and methods can address AI alignment challenges 
+                        through compliance mechanisms, interpretive frameworks, and structural blueprints for 
+                        reliable behavior.
+                    </p>
+                </div>
+
+                <div class="pub-card">
+                    <span class="pub-badge">Jurimetrics</span>
+                    <span class="pub-year">2026</span>
+                    <h4><a href="https://www.americanbar.org/groups/science_technology/resources/jurimetrics/2026-winter/regulatory-markets-future-ai-governance/">Regulatory Markets: The Future of AI Governance</a></h4>
+                    <p class="pub-meta">With Jack Clark</p>
+                    <p class="pub-excerpt">
+                        Proposes regulatory markets—where governments require AI companies to purchase regulatory 
+                        services from licensed private regulators—as a solution that overcomes the limitations 
+                        of both command-and-control regulation and industry self-regulation.
+                    </p>
+                </div>
+
+                <div class="pub-card">
+                    <span class="pub-badge">Science</span>
+                    <span class="pub-year">2024</span>
+                    <h4><a href="https://www.science.org/doi/10.1126/science.adn0117">Managing extreme AI risks amid rapid progress</a></h4>
+                    <p class="pub-meta">With Yoshua Bengio, Geoffrey Hinton, Andrew Yao, Dawn Song, and 20+ others</p>
+                    <p class="pub-excerpt">
+                        A landmark consensus paper describing extreme risks from advanced AI systems and outlining 
+                        a comprehensive plan combining technical research with adaptive governance mechanisms.
+                    </p>
+                </div>
+
+                <div class="pub-card">
+                    <span class="pub-badge">Science</span>
+                    <span class="pub-year">2024</span>
+                    <h4><a href="https://www.science.org/doi/10.1126/science.adl0625">Regulating advanced artificial agents</a></h4>
+                    <p class="pub-meta">With Michael K. Cohen, Noam Kolt, Yoshua Bengio, Stuart Russell</p>
+                    <p class="pub-excerpt">
+                        Addresses the unique governance challenges posed by AI agents that can act autonomously 
+                        in the world, proposing regulatory approaches tailored to agentic systems.
+                    </p>
+                </div>
+
+                <div class="pub-card">
+                    <span class="pub-badge">arXiv</span>
+                    <span class="pub-year">2023</span>
+                    <h4><a href="https://arxiv.org/abs/2307.03718">Frontier AI regulation: Managing emerging risks to public safety</a></h4>
+                    <p class="pub-meta">With Markus Anderljung, Anton Korinek, and others</p>
+                    <p class="pub-excerpt">
+                        Proposes three building blocks for frontier AI regulation: standard-setting, registration 
+                        and reporting requirements, and compliance mechanisms tailored to AI's unique characteristics.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Explore Publications</h2>
+            <p>
+View publications organized by research area, with full abstracts, citation information, and links to papers.
+            </p>
+            <a href="publications.html" class="cta-btn">Browse Publications</a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-contact">
+            <div class="footer-contact-item">
+                <span>Press &amp; Media Inquiries:</span> Andrew Gold — <a href="mailto:ajgold@jhu.edu">ajgold@jhu.edu</a>
+            </div>
+            <div class="footer-contact-item">
+                <span>General Inquiries:</span> Chris LaRosa — <a href="mailto:larosa@jhu.edu">larosa@jhu.edu</a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <a href="https://scholar.google.com/citations?user=7cU2rQsAAAAJ" target="_blank">Google Scholar</a>
+            <a href="https://www.linkedin.com/in/gillianhadfield/" target="_blank">LinkedIn</a>
+            <a href="https://x.com/ghadfield/" target="_blank">Twitter/X</a>
+            <a href="https://bsky.app/profile/ghadfield.bsky.social" target="_blank">Bluesky</a>
+        </div>
+    </footer><script>
+    (function() {
+        var btn = document.querySelector('.mobile-menu-btn');
+        var nav = document.querySelector('.top-nav');
+        if (!btn || !nav) return;
+        btn.addEventListener('click', function() {
+            btn.classList.toggle('active');
+            nav.classList.toggle('mobile-open');
+            document.body.style.overflow = nav.classList.contains('mobile-open') ? 'hidd
