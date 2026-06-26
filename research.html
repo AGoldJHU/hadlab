@@ -801,6 +801,23 @@ View publications organized by research area, with full abstracts, citation info
             document.body.style.overflow = nav.classList.contains('mobile-open') ? 'hidden' : '';
         });
     })();
+
+    // Ensure the page lands on the correct section when arriving via a hash
+    // link (e.g. from the homepage research bar). The browser scrolls to the
+    // anchor on load using fallback-font metrics; once the web fonts swap in,
+    // the text reflows and shifts the target, leaving the visitor in the wrong
+    // spot. Re-assert the scroll once the document and fonts have settled.
+    (function() {
+        if (!location.hash) return;
+        function scrollToHash() {
+            var target = document.getElementById(location.hash.slice(1));
+            if (target) target.scrollIntoView({ behavior: 'auto' });
+        }
+        window.addEventListener('load', scrollToHash);
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(scrollToHash);
+        }
+    })();
     </script>
 </body>
 </html>
